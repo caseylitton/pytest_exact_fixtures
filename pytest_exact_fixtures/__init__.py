@@ -4,7 +4,7 @@ Make pytest fixtures work more like zope.testrunner layers:
 
 https://pypi.python.org/pypi/zope.testrunner#layers
 '''
-from _pytest.python import (
+from _pytest.fixtures import (
     scopes,
     scopenum_function,
 )
@@ -150,8 +150,8 @@ class LayerManager(object):
         keylist.sort()
         for scopenum, weight, argname, fd in keylist:
             if argname not in item.funcargs:
-                #print "SETUP: %s (%s)" % (fd[-1].argname, fd[-1].scope)
-                item.funcargs[argname] = item._request.getfuncargvalue(argname)
+                #print("SETUP: %s (%s)" % (fd[-1].argname, fd[-1].scope))
+                item.funcargs[argname] = item._request.getfixturevalue(argname)
 
     @pytest.mark.trylast
     def pytest_runtest_teardown(self, item, nextitem):
@@ -177,8 +177,8 @@ class LayerManager(object):
 
         keylist.sort(reverse=True)
         for scopenum, weight, argname, fd in keylist:
-            #print "TEARDOWN: %s (%s)" % (fd[-1].argname, fd[-1].scope)
-            fd[-1].finish()
+            #print("TEARDOWN: %s (%s)" % (fd[-1].argname, fd[-1].scope))
+            fd[-1].finish(item._request)
 
 
 class Layer(object):

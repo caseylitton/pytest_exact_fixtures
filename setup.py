@@ -7,7 +7,7 @@ CHANGES = open(os.path.join(here, 'CHANGES.rst')).read()
 
 setup(
     name='pytest_exact_fixtures',
-    version='0.1',
+    version='0.2',
     description='Parse queries in Lucene and Elasticsearch syntaxes',
     long_description=README + '\n\n' + CHANGES,
     classifiers=[
@@ -18,6 +18,8 @@ setup(
         "Programming Language :: Python :: 3.3",
         "Programming Language :: Python :: 3.4",
         "Programming Language :: Python :: 3.5",
+        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: Implementation :: CPython",
         "Programming Language :: Python :: Implementation :: PyPy",
         "License :: OSI Approved :: MIT License",
@@ -27,7 +29,7 @@ setup(
     author_email='laurence@lrowe.co.uk',
     url='http://github.com/lrowe/pytest_exact_fixtures',
     license='MIT',
-    requires=['pytest'],
+    install_requires=['pytest>=3.3.0'],
     entry_points={
         'pytest11': ['pytest_exact_fixtures = pytest_exact_fixtures'],
     },
