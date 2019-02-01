@@ -1,16 +1,7 @@
+dist: xenial
 language: python
-sudo: false
-
-env:
-  - TOXENV=py27
-  - TOXENV=py33
-  - TOXENV=py34
-  - TOXENV=pypy
-  - TOXENV=pypy3
-
-install:
-  - travis_retry pip install tox
-  - travis_retry tox --notest
-
-script:
-  - tox
+python:
+  - "2.7"
+  - "3.7"
+install: pip install tox-travis
+script: tox
