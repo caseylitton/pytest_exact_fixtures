@@ -140,6 +140,8 @@ class LayerManager(object):
                 continue
             if hasattr(fixturedef[-1], 'cached_result'):
                 continue
+            if getattr(fixturedef[-1], 'unittest', False):
+                continue
             if fixturedef[-1].scopenum >= scopenum:
                 continue
             layer = self.layers.get(layer_key(item._fixtureinfo, [argname]), None)

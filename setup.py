@@ -7,7 +7,7 @@ CHANGES = open(os.path.join(here, 'CHANGES.rst')).read()
 
 setup(
     name='pytest_exact_fixtures',
-    version='0.2',
+    version='0.3',
     description='Parse queries in Lucene and Elasticsearch syntaxes',
     long_description=README + '\n\n' + CHANGES,
     classifiers=[
