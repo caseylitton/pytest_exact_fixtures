@@ -8,7 +8,7 @@ from _pytest.fixtures import (
     scopes,
     scopenum_function,
 )
-from collections import defaultdict
+from collections import defaultdict, Hashable
 import operator
 import pytest
 
@@ -165,6 +165,8 @@ class LayerManager(object):
         keylist = []
         nextitem_name2fixturedefs = nextitem._fixtureinfo.name2fixturedefs
         for argname, fixturedef in item._fixtureinfo.name2fixturedefs.items():
+            if not isinstance(fixturedef, Hashable):
+                continue
             if not hasattr(fixturedef[-1], 'cached_result'):
                 continue
             nextitem_fixturedef = nextitem_name2fixturedefs.get(argname, None)
